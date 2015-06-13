@@ -1,0 +1,4 @@
+name: BreakLimiter
+version: 1.0
+author: bo0tzz
+main: com.bo0tzz.breaklimiter.BreakLimiter

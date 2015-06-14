@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class BreakLimiter extends JavaPlugin {
     @Override
     public void onEnable() {
+        //this.getLogger().info("Starting load");
 
         HashMap blockTimeouts = new HashMap<Material,Integer>() {{
             put(Material.COAL_ORE,30);
@@ -23,7 +24,9 @@ public class BreakLimiter extends JavaPlugin {
             put(Material.LOG,0);
         }};
 
-        getServer().getPluginManager().registerEvents(new EventManager(blockTimeouts), this);
+        //this.getLogger().info("Block map loaded!");
+
+        getServer().getPluginManager().registerEvents(new EventManager(blockTimeouts, this), this);
         this.getLogger().info("Loaded!");
     }
 

@@ -1,0 +1,9 @@
+blocks:
+  iron_ore: 35
+  coal_ore: 30
+  gold_ore: 45
+  redstone_ore: 50
+  emerald_ore: 60
+  lapis_ore: 50
+  diamond_ore: 90
+  log: 0

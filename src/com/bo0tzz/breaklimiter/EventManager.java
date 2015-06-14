@@ -29,7 +29,8 @@ public class EventManager implements Listener {
         //main.getLogger().info("BlockBreakEvent triggered");
         Block block = event.getBlock();
         Material type = block.getType();
-        Integer timeout = (Integer) allowedBlocks.get(type);
+        Integer timeout = (Integer) allowedBlocks.get(type.toString().toLowerCase());
+
         if(timeout != null) {
             //main.getLogger().info("Allowed block detected");
             int ticks = timeout * 1200;

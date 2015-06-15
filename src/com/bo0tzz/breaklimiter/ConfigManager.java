@@ -15,11 +15,11 @@ public class ConfigManager {
         main.saveDefaultConfig();
     }
 
-    public Map<String,Object> getHashMap() {
+    public Map<String,Object> getBlocks() {
         return main.getConfig().getConfigurationSection("blocks").getValues(false);
     }
 
-    public boolean getOpAllowed() {
+    public boolean isOpAllowed() {
         return main.getConfig().getBoolean("allowOpBreak");
     }
 

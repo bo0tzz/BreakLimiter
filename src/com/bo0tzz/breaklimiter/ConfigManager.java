@@ -19,4 +19,8 @@ public class ConfigManager {
         return main.getConfig().getConfigurationSection("blocks").getValues(false);
     }
 
+    public boolean getOpAllowed() {
+        return main.getConfig().getBoolean("allowOpBreak");
+    }
+
 }

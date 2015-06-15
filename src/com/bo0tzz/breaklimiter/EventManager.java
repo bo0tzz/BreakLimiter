@@ -54,6 +54,6 @@ public class EventManager implements Listener {
                         //main.getLogger().info("Block was set");
                     }
                 }.runTaskLater(main, ticks);
-        } else event.setCancelled(true);
+        } else if (!(config.getOpAllowed() && event.getPlayer().isOp())) event.setCancelled(true);
     }
 }

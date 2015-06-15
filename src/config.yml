@@ -12,4 +12,4 @@ blocks:
   diamond_ore: 90
   log: 0
 
-allowOPBreak: true
+allowOpBreak: true

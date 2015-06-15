@@ -22,7 +22,7 @@ public class EventManager implements Listener {
     public EventManager(HashMap blockTimeouts, Plugin plugin) {
         allowedBlocks = blockTimeouts;
         main = plugin;
-        config = main.getConfigManager();
+        if (main instanceof BreakLimiter) config = ((BreakLimiter) main).getConfigManager();
         //main.getLogger().info("EventManager class instantiated");
     }
 

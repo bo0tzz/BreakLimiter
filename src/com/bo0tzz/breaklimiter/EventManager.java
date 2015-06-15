@@ -11,7 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 
 /**
- * Created by boet on 6/13/15.
+ * Created by bo0tzz
  */
 public class EventManager implements Listener {
 
@@ -22,7 +22,7 @@ public class EventManager implements Listener {
     public EventManager(HashMap blockTimeouts, Plugin plugin) {
         allowedBlocks = blockTimeouts;
         main = plugin;
-        config = main.getConfigManager;
+        config = main.getConfigManager();
         //main.getLogger().info("EventManager class instantiated");
     }
 

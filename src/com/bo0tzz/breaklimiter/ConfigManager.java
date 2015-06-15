@@ -5,7 +5,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.Map;
 
 /**
- * Created by boet on 6/14/15.
+ * Created by bo0tzz
  */
 public class ConfigManager {
     private Plugin main;

@@ -1,3 +1,7 @@
+# Define the blocks that players are allowed to break here #
+# The format is <block_name: timeout>                      #
+# Make sure to type the block name in all lowercase        #
+
 blocks:
   iron_ore: 35
   coal_ore: 30

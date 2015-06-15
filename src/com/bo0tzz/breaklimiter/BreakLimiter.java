@@ -17,7 +17,7 @@ public class BreakLimiter extends JavaPlugin {
         //this.getLogger().info("Block map loaded!");
 
         getServer().getPluginManager().registerEvents(new EventManager(blockTimeouts, this), this);
-        this.getLogger().info("Loaded!");
+        //this.getLogger().info("Loaded!");
     }
 
     @Override

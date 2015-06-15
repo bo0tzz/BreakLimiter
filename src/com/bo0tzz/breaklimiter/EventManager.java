@@ -17,10 +17,12 @@ public class EventManager implements Listener {
 
     private HashMap allowedBlocks;
     private Plugin main;
+    private ConfigManager config;
 
     public EventManager(HashMap blockTimeouts, Plugin plugin) {
         allowedBlocks = blockTimeouts;
         main = plugin;
+        config = main.getConfigManager;
         //main.getLogger().info("EventManager class instantiated");
     }
 

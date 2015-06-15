@@ -18,4 +18,5 @@ public class ConfigManager {
     public Map<String,Object> getHashMap() {
         return main.getConfig().getConfigurationSection("blocks").getValues(false);
     }
+
 }

@@ -15,8 +15,8 @@ import java.util.HashMap;
  */
 public class EventManager implements Listener {
 
-    HashMap allowedBlocks;
-    Plugin main;
+    private HashMap allowedBlocks;
+    private Plugin main;
 
     public EventManager(HashMap blockTimeouts, Plugin plugin) {
         allowedBlocks = blockTimeouts;

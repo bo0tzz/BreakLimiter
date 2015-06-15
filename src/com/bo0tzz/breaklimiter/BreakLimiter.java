@@ -5,7 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 
 /**
- * Created by boet on 6/13/15.
+ * Created by bo0tzz
  */
 public class BreakLimiter extends JavaPlugin {
     @Override

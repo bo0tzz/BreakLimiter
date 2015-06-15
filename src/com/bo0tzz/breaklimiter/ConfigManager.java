@@ -2,15 +2,13 @@ package com.bo0tzz.breaklimiter;
 
 import org.bukkit.plugin.Plugin;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by boet on 6/14/15.
  */
 public class ConfigManager {
-    Plugin main;
-    Map<String, Object> blockTimeouts = new HashMap<>();
+    private Plugin main;
 
     public ConfigManager (Plugin plugin) {
         main = plugin;

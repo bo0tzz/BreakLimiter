@@ -8,11 +8,14 @@ import java.util.HashMap;
  * Created by bo0tzz
  */
 public class BreakLimiter extends JavaPlugin {
+
+    ConfigManager config = new ConfigManager(this);
+
     @Override
     public void onEnable() {
         //this.getLogger().info("Starting load");
 
-        HashMap blockTimeouts = (HashMap) new ConfigManager(this).getHashMap();
+        HashMap blockTimeouts = (HashMap) config.getHashMap();
 
         //this.getLogger().info("Block map loaded!");
 
@@ -24,4 +27,9 @@ public class BreakLimiter extends JavaPlugin {
     public void onDisable() {
 
     }
+
+    public ConfigManager getConfigManager() {
+        return config;
+    }
+
 }

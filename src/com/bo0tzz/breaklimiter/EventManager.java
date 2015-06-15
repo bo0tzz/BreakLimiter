@@ -11,16 +11,18 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 
 /**
- * Created by boet on 6/13/15.
+ * Created by bo0tzz
  */
 public class EventManager implements Listener {
 
     private HashMap allowedBlocks;
     private Plugin main;
+    private ConfigManager config;
 
     public EventManager(HashMap blockTimeouts, Plugin plugin) {
         allowedBlocks = blockTimeouts;
         main = plugin;
+        if (main instanceof BreakLimiter) config = ((BreakLimiter) main).getConfigManager();
         //main.getLogger().info("EventManager class instantiated");
     }
 
@@ -52,6 +54,6 @@ public class EventManager implements Listener {
                         //main.getLogger().info("Block was set");
                     }
                 }.runTaskLater(main, ticks);
-        } else event.setCancelled(true);
+        } else if (!(config.getOpAllowed() && event.getPlayer().isOp())) event.setCancelled(true);
     }
 }

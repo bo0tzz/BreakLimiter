@@ -5,43 +5,60 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by boet on 6/13/15.
+ * Created by bo0tzz
  */
 public class EventManager implements Listener {
 
-    HashMap allowedBlocks;
-    Plugin main;
-
-    public EventManager(HashMap blockTimeouts, Plugin plugin) {
-        allowedBlocks = blockTimeouts;
-        main = plugin;
-        //main.getLogger().info("EventManager class instantiated");
+    private Map<String, Object> allowedBlocks;
+    private BreakLimiter main;
+    private ConfigManager config;
+    
+    public EventManager(BreakLimiter mainClass) {
+        main = mainClass;
+        config = main.getConfigManager();
+        allowedBlocks = config.getBlocks();
     }
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        //main.getLogger().info("BlockBreakEvent triggered");
         Block block = event.getBlock();
-        Material type = block.getType();
-        Integer timeout = (Integer) allowedBlocks.get(type);
+        Material blockType = block.getType();
+        Material type;
+
+        if (blockType == Material.GLOWING_REDSTONE_ORE) {
+            type = Material.REDSTONE_ORE;
+        } else {
+            type = blockType;
+        }
+
+        Integer timeout = (Integer) allowedBlocks.get(type.toString().toLowerCase());
+
         if(timeout != null) {
-            //main.getLogger().info("Allowed block detected");
             int ticks = timeout * 1200;
             if (ticks != 0)
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        //main.getLogger().info("Runnable is running");
-                        if (block.isEmpty()) block.setType(type);
-                        //main.getLogger().info("Block was set");
+                        if (block.isEmpty()) {
+                            block.setType(type);
+                        }
                     }
                 }.runTaskLater(main, ticks);
-        } else event.setCancelled(true);
+        } else {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        if (!config.isBlockPlaceAllowed() && !event.getPlayer().isOp()) {
+            event.setCancelled(true);
+        }
     }
 }

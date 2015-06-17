@@ -6,7 +6,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Map;
@@ -17,12 +16,12 @@ import java.util.Map;
 public class EventManager implements Listener {
 
     private Map<String, Object> allowedBlocks;
-    private Plugin main;
+    private BreakLimiter main;
     private ConfigManager config;
     
-    public EventManager(Plugin plugin) {
-        main = plugin;
-        config = ((BreakLimiter)main).getConfigManager();
+    public EventManager(BreakLimiter mainClass) {
+        main = mainClass;
+        config = main.getConfigManager();
         allowedBlocks = config.getBlocks();
     }
 

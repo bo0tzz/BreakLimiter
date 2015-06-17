@@ -5,6 +5,7 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -15,15 +16,14 @@ import java.util.Map;
  */
 public class EventManager implements Listener {
 
-    private Map<String,Object> allowedBlocks;
+    private Map<String, Object> allowedBlocks;
     private Plugin main;
     private ConfigManager config;
-
-    public EventManager(Map<String,Object> blockTimeouts, Plugin plugin) {
-        allowedBlocks = blockTimeouts;
+    
+    public EventManager(Plugin plugin) {
         main = plugin;
-        if (main instanceof BreakLimiter)
-            config = ((BreakLimiter) main).getConfigManager();
+        config = ((BreakLimiter)main).getConfigManager();
+        allowedBlocks = config.getBlocks();
     }
 
     @EventHandler
@@ -31,6 +31,7 @@ public class EventManager implements Listener {
         Block block = event.getBlock();
         Material blockType = block.getType();
         Material type;
+
         if (blockType == Material.GLOWING_REDSTONE_ORE) {
             type = Material.REDSTONE_ORE;
         } else {
@@ -39,17 +40,25 @@ public class EventManager implements Listener {
 
         Integer timeout = (Integer) allowedBlocks.get(type.toString().toLowerCase());
 
-
         if(timeout != null) {
             int ticks = timeout * 1200;
             if (ticks != 0)
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        if (block.isEmpty()) block.setType(type);
+                        if (block.isEmpty()) {
+                            block.setType(type);
+                        }
                     }
                 }.runTaskLater(main, ticks);
-        } else if (!(config.isOpAllowed() && event.getPlayer().isOp())) {
+        } else {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        if (config.isBlockPlaceAllowed() && !event.getPlayer().isOp()) {
             event.setCancelled(true);
         }
     }

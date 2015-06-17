@@ -12,4 +12,9 @@ blocks:
   diamond_ore: 90
   log: 0
 
+#Allow OPs to break blocks
+
 allowOpBreak: true
+
+#Allow players to place blocks
+allowBlockPlace: true

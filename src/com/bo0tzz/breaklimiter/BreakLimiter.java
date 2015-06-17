@@ -2,8 +2,6 @@ package com.bo0tzz.breaklimiter;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Map;
-
 /**
  * Created by bo0tzz
  */
@@ -13,9 +11,7 @@ public class BreakLimiter extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Map<String,Object> blockTimeouts =  config.getBlocks();
-
-        getServer().getPluginManager().registerEvents(new EventManager(blockTimeouts, this), this);
+        getServer().getPluginManager().registerEvents(new EventManager(this), this);
     }
 
     @Override

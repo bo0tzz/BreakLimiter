@@ -23,4 +23,8 @@ public class ConfigManager {
         return main.getConfig().getBoolean("allowOpBreak");
     }
 
+    public boolean isBlockPlaceAllowed() {
+        return main.getConfig().getBoolean("allowBlockPlace");
+    }
+
 }

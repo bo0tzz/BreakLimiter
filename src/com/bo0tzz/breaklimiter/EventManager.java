@@ -57,7 +57,7 @@ public class EventManager implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (config.isBlockPlaceAllowed() && !event.getPlayer().isOp()) {
+        if (!config.isBlockPlaceAllowed() && !event.getPlayer().isOp()) {
             event.setCancelled(true);
         }
     }
